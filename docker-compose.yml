@@ -9,14 +9,10 @@ services:
       - "80:3000"    
     links:
       - mongo
-    volumes:
-      - .:/usr/src/app
   mongo:
     container_name: mymongodatabase
     image: mongo
     ports: 
       - "27018:27017"
-    volumes:
-       - ./data:/data/db
 
       
