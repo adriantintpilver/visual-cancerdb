@@ -6,7 +6,7 @@ services:
     restart: always
     build: .
     ports:
-      - "80:3000"    
+      - "5000:3000"    
     links:
       - mongo
     volumes:
@@ -18,5 +18,7 @@ services:
       - "27017:27017"
     volumes:
        - ./data:/data/db
+    logging:
+      driver: none
 
       
