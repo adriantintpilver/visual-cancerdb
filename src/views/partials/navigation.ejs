@@ -10,6 +10,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <form action="/find" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" name="search" placeholder="Search" class="form-control" value="<%= find %>">
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> Upload</a>
             </li>
         </ul>
