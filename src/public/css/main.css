@@ -1,5 +1,38 @@
+*{
+    font-family: 'Roboto', sans-serif !important;
+}
 body {
-    background: #ECE9E6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #e4e9ee;  /* fallback for old browsers */
+    /* background: -webkit-linear-gradient(to right, #111111, #111111);  */
+    /* background: linear-gradient(to right, #111111, #111111);  */
+}
+.soft-shadow{
+    -webkit-box-shadow: 0px 0px 60px -30px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 60px -30px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 60px -30px rgba(0,0,0,0.75);
+}
+.border-25{
+    border-radius: 25px;
+}
+
+.light-green{
+    background:#9bffbc;
+    color:#17572c;
+}
+.image-copyright{
+    font-size: .7em;
+}
+.navbar{
+    color:#000000 !important;
+}
+.image-title{
+    color: rgb(0, 0, 0);
+}
+.e-container{
+    display: flex;
+}
+.m-card{
+    background-color: #ffffff00;
+    border: none;
+    text-align: center;
 }
