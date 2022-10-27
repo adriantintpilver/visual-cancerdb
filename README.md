@@ -27,7 +27,7 @@ Te site is set up to slow it down in a docker with docker-compose and these are 
 As a precondition you must have docker and docker compose installed in your local machine.
 
 1- Go to the command line in the folder where you have the downloaded project. For example c:/Visual-CancerDB
-2-
+2- install packages with npm
 ```bash
 npm i express ejs fs-extra mongoose morgan multer timeago.js uuid
 ```
@@ -35,7 +35,7 @@ npm i express ejs fs-extra mongoose morgan multer timeago.js uuid
 ```bash
  docker-compose build
 ```
-4-
+4- start
 ```bash
 docker-compose up
 ```
