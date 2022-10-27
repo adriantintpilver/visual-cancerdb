@@ -31,8 +31,7 @@ As a precondition you must have docker and docker compose installed in your loca
 ```bash
 npm i express ejs fs-extra mongoose morgan multer timeago.js uuid
 ```
-// run this in the local folder with the project
-3-
+3- run this in the local folder with the project
 ```bash
  docker-compose build
 ```
