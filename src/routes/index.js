@@ -22,14 +22,16 @@ router.get('/find', async (req, res) => {
 
 router.post('/find', async (req, res) => {
     const find = req.body.search;
-    const query = {$or:[{"title": { $regex: '.*' + find + '.*' }}, {"description": { $regex: '.*' + find + '.*' }}]};
+    const query = {$or:[{"title": { $regex: find, '$options' : 'i'}}, {"description": { $regex: find , '$options' : 'i'}}]};
+    console.log("SEARCH SEARCH");
+    console.log(query);
     const imagesFind = await Image.find(query);
     res.render('search', { imagesFind, find });
 });
 
 router.get('/find/:find', async (req, res) => {
     const { find } = req.params;
-    const query = {$or:[{"title": { $regex: '.*' + find + '.*' }}, {"description": { $regex: '.*' + find + '.*' }}]};
+    const query = {$or:[{"title": { $regex: find, '$options' : 'i'}}, {"description": { $regex: find , '$options' : 'i'}}]};
     const imagesFind = await Image.find(query);
     res.render('search', { imagesFind, find });
 });
