@@ -43,12 +43,14 @@ router.post('/upload', async (req, res) => {
     const image = new Image();
     image.title = req.body.title;
     image.description = req.body.description;
+    image.copyright_link = req.body.copyright_link;
+    image.copyright_name = req.body.copyright_name;
+
     image.filename = req.file.filename;
     image.path = '/img/uploads/' + req.file.filename;
     image.originalname = req.file.originalname;
     image.mimetype = req.file.mimetype;
     image.size = req.file.size;
-   // console.log(image);
     await image.save();
     res.redirect('/');
 });

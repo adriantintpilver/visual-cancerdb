@@ -10,5 +10,10 @@
     </div>
   </nav>
   <nav class="navbar soft-shadow">
-    <input class="form-control me-10" type="search" placeholder="Search" aria-label="Search">
+    <form action="/find" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+          <input class="form-control me-10" type="text" name="search" placeholder="Search" aria-label="Search" value="<%= find %>">
+      </div>
+  </form>
+    
   </nav>

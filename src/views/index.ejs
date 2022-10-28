@@ -10,10 +10,10 @@
 </head>
     <body>
         <%- include("partials/navigation") %>
-        <div class="container-fluid p-5">
+        <div class="container-fluid p-5 ">
             <div class="row">
                 <% images.forEach(function (image) { %>
-                <div class="card m-card  col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card m-card mb-4 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <a href="/image/<%= image._id %>">
                         <img src="<%= image.path %>" class="card-img-top border-25 soft-shadow" alt="<%= image.filename %>">
                     </a>
