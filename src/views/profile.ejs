@@ -15,13 +15,11 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card m-card ">
-                    <a href="/image/<%= image._id %>">
-                        <img src="<%= image.path %>" class="card-img-top border-25 soft-shadow" alt="<%= image.filename %>">
-                    </a>
-                    <div onclick="location.href='/image/<%= image._id %>';" class="mt-2" style="cursor:pointer">
+                    <img src="<%= image.path %>" class="card-img-top border-25 soft-shadow" alt="<%= image.filename %>">
+                    <div class="mt-2">
                         <p class="image-title mb-0"><%= image.title %></p>
                         <p class="card-text"><%= image.description %></p>
-                        <a class="image-copyright" href="<%= image.copyright_link %>"><%= image.copyright_name %></a>
+                        <a class="image-copyright" href="<%= image.copyright_link %>" target="_blank"><%= image.copyright_name %></a>
                         <hr class="hr" />
                         <a href="/find/<%= find %>" class="btn btn-primary">Back</a>
                     </div>
