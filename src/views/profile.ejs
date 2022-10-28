@@ -10,38 +10,25 @@
 </head>
 
 <body>
-
     <%- include("partials/navigation") %>
-
     <div class="container p-4">
         <div class="row">
-            <div class="col-md-4 offset-md-4">
-
-                <div class="card"> <!--card animated fadeInDown-->
-                    <img src="<%= image.path %>" class="card-img-top" alt="<%= image.filename %>">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%= image.title %>
-                        </h5>
-                        <p class="card-text">
-                            <%= image.description %>
-                        </p>
-                        <p>
-                            <%= format(image.created_at) %>
-                        </p>
-                        <!--<a href="/image/<%= image._id%>/delete" class="btn btn-danger btn-block">
-                            Delete Image
-                        </a>-->
-                        <a href="/find/<%= find %>" class="btn btn-primary">
-                            Back
-                        </a>
+            <div class="col-md-6 offset-md-3">
+                <div class="card m-card ">
+                    <a href="/image/<%= image._id %>">
+                        <img src="<%= image.path %>" class="card-img-top border-25 soft-shadow" alt="<%= image.filename %>">
+                    </a>
+                    <div onclick="location.href='/image/<%= image._id %>';" class="mt-2" style="cursor:pointer">
+                        <p class="image-title mb-0"><%= image.title %></p>
+                        <p class="card-text"><%= image.description %></p>
+                        <a class="image-copyright" href="<%= image.copyright_link %>"><%= image.copyright_name %></a>
+                        <hr class="hr" />
+                        <a href="/find/<%= find %>" class="btn btn-primary">Back</a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 </body>
 
 </html>

@@ -8,31 +8,22 @@
     <title>CancerDB</title>
     <%- include("partials/head") -%>
 </head>
-
-<body>
-
-    <%- include("partials/navigation") %>
-
-    <div class="container p-4">
-        <div class="row">
-            <div class="card-columns">
-
+    <body>
+        <%- include("partials/navigation") %>
+        <div class="container-fluid p-5 ">
+            <div class="row">
                 <% images.forEach(function (image) { %>
-                <div class="card">
+                <div class="card m-card mb-4 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <a href="/image/<%= image._id %>">
-                        <img src="<%= image.path %>" class="card-img-top" alt="<%= image.filename %>">
+                        <img src="<%= image.path %>" class="card-img-top border-25 soft-shadow" alt="<%= image.filename %>">
                     </a>
-                    <div onclick="location.href='/image/<%= image._id %>';" class="card-body" style="cursor:pointer">
-                        <h5 class="card-title"><%= image.title %></h5>
-                        <p class="card-text"><%= image.description.substring(0,100) %>...</p>
-                        <p><%= format(image.created_at) %></p>
+                    <div onclick="location.href='/image/<%= image._id %>';" class="mt-2" style="cursor:pointer">
+                        <p class="image-title mb-0"><%= image.title %></p>
+                        <a class="image-copyright" href="<%= image.copyright_link %>"><%= image.copyright_name %></a>
                     </div>
                 </div>
                 <% }) %>
             </div>
         </div>
-    </div>
-
-</body>
-
+    </body>
 </html>

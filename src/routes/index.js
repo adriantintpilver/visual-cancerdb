@@ -22,14 +22,16 @@ router.get('/find', async (req, res) => {
 
 router.post('/find', async (req, res) => {
     const find = req.body.search;
-    const query = {$or:[{"title": { $regex: '.*' + find + '.*' }}, {"description": { $regex: '.*' + find + '.*' }}]};
+    const query = {$or:[{"title": { $regex: find, '$options' : 'i'}}, {"description": { $regex: find , '$options' : 'i'}}]};
+    console.log("SEARCH SEARCH");
+    console.log(query);
     const imagesFind = await Image.find(query);
     res.render('search', { imagesFind, find });
 });
 
 router.get('/find/:find', async (req, res) => {
     const { find } = req.params;
-    const query = {$or:[{"title": { $regex: '.*' + find + '.*' }}, {"description": { $regex: '.*' + find + '.*' }}]};
+    const query = {$or:[{"title": { $regex: find, '$options' : 'i'}}, {"description": { $regex: find , '$options' : 'i'}}]};
     const imagesFind = await Image.find(query);
     res.render('search', { imagesFind, find });
 });
@@ -43,12 +45,14 @@ router.post('/upload', async (req, res) => {
     const image = new Image();
     image.title = req.body.title;
     image.description = req.body.description;
+    image.copyright_link = req.body.copyright_link;
+    image.copyright_name = req.body.copyright_name;
+
     image.filename = req.file.filename;
     image.path = '/img/uploads/' + req.file.filename;
     image.originalname = req.file.originalname;
     image.mimetype = req.file.mimetype;
     image.size = req.file.size;
-   // console.log(image);
     await image.save();
     res.redirect('/');
 });

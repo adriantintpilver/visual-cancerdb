@@ -1,3 +1,5 @@
 node_modules
 docker.txt
 data
+local_data
+src/public/img/uploads
