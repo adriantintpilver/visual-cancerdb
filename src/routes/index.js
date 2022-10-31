@@ -47,7 +47,7 @@ router.post('/upload', async (req, res) => {
     image.description = req.body.description;
     image.copyright_link = req.body.copyright_link;
     image.copyright_name = req.body.copyright_name;
-
+    image.youtubeid = req.body.youtubeid;
     image.filename = req.file.filename;
     image.path = '/img/uploads/' + req.file.filename;
     image.originalname = req.file.originalname;
@@ -76,10 +76,6 @@ router.get('/image/:id/delete/ok', async (req, res) => {
     const imageDeleted = await Image.findByIdAndDelete(id);
     await unlink(path.resolve('./src/public' + imageDeleted.path));
     res.redirect('/');
-});
-
-router.get('/test', async (req, res) => {
-    res.render('testmenu', {});
 });
 
 module.exports = router;
