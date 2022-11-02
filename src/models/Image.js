@@ -8,7 +8,8 @@ const imageSchema = new Schema({
     originalname: {type: String},
     copyright_name: {type: String},
     copyright_link: {type: String},
-    youtubeid: {type: String},
+    video_type: {type: Number},
+    video_id: {type: String},
     mimetype: {type: String},
     size: { type: Number},
     created_at: {type: Date, default: Date.now()}

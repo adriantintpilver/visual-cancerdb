@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <% if (typeof image.youtubeid === 'string' && image.youtubeid.length !== 0) {%><%- include("partials/videoscripts") -%><% }  %>
+    <% if (typeof image.video_id === 'string' && image.video_id.length !== 0) {%><%- include("partials/videoscripts") -%><% }  %>
     <%- include("partials/navigation") %>
     <div class="container p-4">
         <div class="row">
@@ -20,8 +20,13 @@
                     <div class="mt-2">
                         <p class="image-title mb-0"><%= image.title %></p>
                         <p class="card-text"><%= image.description %></p>
-                        <% if (typeof image.youtubeid === 'string' && image.youtubeid.length !== 0) {%>
-                        <div id="player"class="card-img-top border-25 soft-shadow"></div>
+                        <% if (typeof image.video_id === 'string' && image.video_id.length !== 0) {%>
+                            <% if (image.video_type === 1) {%> <!-- Youtube --> 
+                                <div id="player"class="card-img-top border-25 soft-shadow"></div>
+                            <% } %>
+                            <% if (image.video_type === 2) {%> <!-- Vimeo --> 
+                                <iframe src="https://player.vimeo.com/video/<%= image.video_id %>?h=87f80eda9b&color=000000&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen class="card-img-top border-25 soft-shadow" style="background: #000000;"></iframe>
+                            <% } %>
                         <% }  %>
                         <a class="image-copyright" href="<%= image.copyright_link %>" target="_blank"><%= image.copyright_name %></a>
                         <hr class="hr" />

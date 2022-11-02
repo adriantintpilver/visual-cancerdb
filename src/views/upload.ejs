@@ -41,7 +41,13 @@
                                 <input type="text" name="copyright_link" placeholder="Copyright Link" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="youtubeid" placeholder="youtube ID" class="form-control">
+                                <select name="video_type" class="form-control">
+                                    <option value="1">YouTube</option>
+                                    <option value="2">Vimeo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="video_id" placeholder="video ID" class="form-control">
                             </div>
                             <div class="form-group">
                                 <button class="btn light-green btn-block">
