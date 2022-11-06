@@ -11,10 +11,8 @@ const { Console } = require('console');
 const pageSize = 20;
 
 router.get('/images', async (req, res) => {
-    console.log(req.query);
     let query = {};
     if(req.query.search){
-        console.log("using search feature");
         query = {$or:[{"title": { $regex: req.query.search, '$options' : 'i'}}, {"description": { $regex: req.query.search , '$options' : 'i'}}]};
     }
     const images = await Image.find(query).skip(req.query.page*pageSize).limit(pageSize);

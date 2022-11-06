@@ -17,16 +17,15 @@ const throttle = (callback, time) => {
 
 
 const createCard = (data) => {
+	// hidden prototype dom
 	let card = document.getElementById("image-card-prototype").cloneNode(true);
-	// 
+
 	card.id = "";
 	card.querySelector(".card-link").setAttribute("href",`/image/${data._id}`);
 	
 	card.querySelector(".card-img-top").setAttribute("src",data.path);
 	card.querySelector(".card-img-top").setAttribute("alt",data.filename);
 
-	// card.querySelector(".card-link-2").setAttribute(onclick,`location.href='/image/${data._id}'`);
-	
 	card.querySelector(".image-title").innerHTML = data.title;
 	
 	card.querySelector(".image-copyright").setAttribute("href",data.copyright_link);
@@ -38,10 +37,10 @@ const createCard = (data) => {
 };
 
 const addCards = () => {
-	console.log("adding cards")
 	// show graphics
 	document.getElementById("loading-gfx").classList.remove("hidden");
 
+	// if url has ?search= param
 	const urlParams = new URLSearchParams(window.location.search);
 
 	let img_params = {page:current_page};
@@ -50,32 +49,31 @@ const addCards = () => {
 		img_params.search = urlParams.get('search');
 	}
 
-	
-
 	axios.get('/images', {params: img_params}).then(function (response) {
-		// hide graphics
 		current_page+=1;
+		// hide graphics
 		document.getElementById("loading-gfx").classList.add("hidden");
-		console.log(response);
+		
 		if(response.data.length == 0 ){
 			can_add = false;
+			// show page end dom
 			document.getElementById("page-end").classList.remove("hidden");
 		}
 		response.data.forEach((data)=>{
-			console.log(data.path);
 			createCard(data);
 		})
 	}).catch(function (error) {
 		console.log(error);
 	}).then(function () {
-		// always executed
 	});  
 };
 
 const handleInfiniteScroll = () => {
   throttle(() => {
+	// scroll bar percentage
     const scroll_percentage = (window.innerHeight + window.pageYOffset)/document.body.offsetHeight;
 	
+	// 90% scrolled 
     if (scroll_percentage >= 0.9 && can_add) {
 		addCards();
     }
@@ -85,6 +83,5 @@ const handleInfiniteScroll = () => {
 window.onload = function () {
   addCards();
 };
-
 
 window.addEventListener("scroll", handleInfiniteScroll);
