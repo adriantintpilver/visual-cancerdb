@@ -8,32 +8,21 @@ const router = Router();
 const Image = require('../models/Image');
 const { Console } = require('console');
 
+const pageSize = 20;
+
+router.get('/images', async (req, res) => {
+    console.log(req.query);
+    let query = {};
+    if(req.query.search){
+        console.log("using search feature");
+        query = {$or:[{"title": { $regex: req.query.search, '$options' : 'i'}}, {"description": { $regex: req.query.search , '$options' : 'i'}}]};
+    }
+    const images = await Image.find(query).skip(req.query.page*pageSize).limit(pageSize);
+    res.json(images);
+});
+
 router.get('/', async (req, res) => {
-    const { find } = "";
-    const images = await Image.find();
-    res.render('index', { images, find });
-});
-
-router.get('/find', async (req, res) => {
-    const { find } = "";
-    const images = await Image.find();
-    res.render('index', { images, find });
-});
-
-router.post('/find', async (req, res) => {
-    const find = req.body.search;
-    const query = {$or:[{"title": { $regex: find, '$options' : 'i'}}, {"description": { $regex: find , '$options' : 'i'}}]};
-    console.log("SEARCH SEARCH");
-    console.log(query);
-    const imagesFind = await Image.find(query);
-    res.render('search', { imagesFind, find });
-});
-
-router.get('/find/:find', async (req, res) => {
-    const { find } = req.params;
-    const query = {$or:[{"title": { $regex: find, '$options' : 'i'}}, {"description": { $regex: find , '$options' : 'i'}}]};
-    const imagesFind = await Image.find(query);
-    res.render('search', { imagesFind, find });
+    res.render('index');
 });
 
 router.get('/upload', (req, res) => {
@@ -61,13 +50,6 @@ router.post('/upload', async (req, res) => {
 router.get('/image/:id', async (req, res) => {
     const { id } = req.params;
     const find = "";
-    const image = await Image.findById(id);
-    res.render('profile', { image, find });
-});
-
-router.get('/image/:id/:find', async (req, res) => {
-    const id = req.params.id;
-    const find = req.params.find;
     const image = await Image.findById(id);
     res.render('profile', { image, find });
 });

@@ -17,7 +17,9 @@ body {
 .border-25{
     border-radius: 25px;
 }
-
+#image-card-prototype{
+    display: none;
+}
 .light-green{
     background:#9bffbc;
     color:#17572c;
@@ -38,4 +40,13 @@ body {
     background-color: #ffffff00;
     border: none;
     text-align: center;
+}
+#loading-gfx{
+    margin-bottom: 5em;
+}
+#page-end{
+    padding-bottom:5em;
+}
+.hidden{
+    display: none !important;
 }
