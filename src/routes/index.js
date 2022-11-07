@@ -79,4 +79,34 @@ router.get('/image/:id/delete/ok', async (req, res) => {
     res.redirect('/');
 });
 
+router.get('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    const find = "";
+    const image = await Image.findById(id);
+    res.render('edit', { image, find });
+});
+
+router.post('/edit', async (req, res) => {
+    const image = await Image.findById(req.body.id);
+    image.title = req.body.title;
+    image.description = req.body.description;
+    image.copyright_link = req.body.copyright_link;
+    image.copyright_name = req.body.copyright_name;
+    image.video_type = req.body.video_type;
+    image.video_id = req.body.video_id;
+    if(req.file) {
+        image.filename = req.file.filename;
+        image.path = '/img/uploads/' + req.file.filename;
+        image.originalname = req.file.originalname;
+        image.mimetype = req.file.mimetype;
+        image.size = req.file.size;
+    }
+    await image.save();
+    res.redirect('/');
+});
+
+router.get('/test', async (req, res) => {
+    res.render('video', {});
+});
+
 module.exports = router;
