@@ -19,6 +19,11 @@ router.get('/images', async (req, res) => {
     res.json(images);
 });
 
+router.get('/detail', async (req, res) => {
+    const image = await Image.findById(req.query.id);
+    res.json(image);
+});
+
 router.get('/', async (req, res) => {
     res.render('index');
 });
@@ -47,9 +52,8 @@ router.post('/upload', async (req, res) => {
 
 router.get('/image/:id', async (req, res) => {
     const { id } = req.params;
-    const find = "";
     const image = await Image.findById(id);
-    res.render('profile', { image, find });
+    res.render('profile', { image,id});
 });
 
 router.get('/image/:id/delete/ok', async (req, res) => {

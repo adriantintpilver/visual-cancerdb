@@ -13,53 +13,57 @@
 
     <%- include("partials/navigation") %>
 
-    <div class="container p-4">
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                <div class="row">
                 <div class="card">
-                    <div class="card-header text-center">
-                        <h3>Upload an Image</h3>
-                    </div>
                     <div class="card-body">
+                        <h5 class="card-title">Upload Image</h5>
                         <form action="/upload" method="post" enctype="multipart/form-data">
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
-                                    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
-                                </div>
+                            <div class="mb-3">
+                                <input type="file" name="image" class="form-control" >
                             </div>
-                            <div class="form-group">
-                                <input type="text" name="title" placeholder="Title" class="form-control">
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="floatingTitle" type="text" name="title" placeholder="Title" class="form-control">
+                                <label for="floatingTitle">Title</label>
                             </div>
-                            <div class="form-group">
-                                <textarea name="description" placeholder="Description" class="form-control"></textarea>
+
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="floatingDescription" type="text" name="description" placeholder="description" class="form-control"></textarea>
+                                <label for="floatingDescription">Description</label>
                             </div>
-                            <div class="form-group">
-                                <input type="text" name="copyright_name" placeholder="Copyright Name" class="form-control">
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="floatingCname" type="text" name="copyright_name" placeholder="Copyright Name" class="form-control">
+                                <label for="floatingCname">Copyright Name</label>
                             </div>
-                            <div class="form-group">
-                                <input type="text" name="copyright_link" placeholder="Copyright Link" class="form-control">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="floatingClink" type="text" name="copyright_link" placeholder="Copyright Url" class="form-control">
+                                <label for="floatingClink">Copyright Url</label>
                             </div>
-                            <div class="form-group">
-                                <select name="video_type" class="form-control">
+
+                            <div class="form-floating mb-3">
+                                <select name="video_type" class="form-select">
                                     <option value="1">YouTube</option>
                                     <option value="2">Vimeo</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <input type="text" name="video_id" placeholder="video ID" class="form-control">
+                                
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="floatingVideoId" type="text" name="video_id" placeholder="Video ID Url" class="form-control">
+                                <label for="floatingVideoId">Video ID</label>
                             </div>
-                            <div class="form-group">
-                                <button class="btn light-green btn-block">
-                                    Upload
-                                </button>
-                            </div>
+
+                            <button class="btn light-green btn-block">
+                                Upload
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
 
+            </div>
     </div>
 
 </body>

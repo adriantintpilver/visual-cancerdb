@@ -11,10 +11,16 @@
 </head>
     <body>
         <%- include("partials/navigation") %>
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-id="636a4d7e8f062b0af3a55af3" data-bs-target="#detailModal">
+    Launch demo modal
+  </button> -->
+  
+  <%- include("detail_modal") %>
         <div class="container-fluid p-5 ">
             <div id="card-container" class="row">
                 <div id="image-card-prototype" class="card m-card mb-4 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                    <a class="card-link" href="">
+                    <a class="card-link" href="" data-bs-toggle="modal" data-bs-id="" data-bs-target="#detailModal">
                         <img src="" class="card-img-top border-25 soft-shadow" alt="">
                         <p class="image-title mt-2 mb-0"></p>
                     </a>
