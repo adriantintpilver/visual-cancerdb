@@ -7,7 +7,7 @@ Someone's new treatment could be just 2 ideas away from being the next big cure.
 For cancer patients and their loved ones, we want to bring you the absolute best facts about cancer. We will deliver that information to you quickly, free of charge and you can trust it 100%.
 
 The site does not yet have a domain and cannot be navigated.
-In this initial stage it is uploaded to the AWS instance --> http://ec2-18-228-191-233.sa-east-1.compute.amazonaws.com/ but it is not available 100% of the time.
+In this initial stage it is uploaded to the AWS instance --> http://ec2-18-230-108-113.sa-east-1.compute.amazonaws.com/ but it is not available 100% of the time.
 
 <b>To upload a case</b>
 
@@ -19,6 +19,13 @@ There is no interface on the web to do it from the site but you can place delete
 url "/image/6352d3a3cfa0c5cbf376d92c"
 add
 url "/image/6352d3a3cfa0c5cbf376d92c/delete/ok" to remove it.
+
+<b>To edit a case</b>
+
+There is no interface on the web to do it from the site but you can place edit by placing "/edit/:imageid" in the URL where we are seeing the case.
+url "/image/6352d3a3cfa0c5cbf376d92c"
+add
+url "/edit/6352d3a3cfa0c5cbf376d92c" to edit it.
 
 <b>To build the full site locally</b>
 
