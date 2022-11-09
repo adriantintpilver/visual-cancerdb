@@ -1,12 +1,12 @@
 let card_container = document.getElementById("card-container");
 let current_page = 0;
 
-// keep track of card id
-let last_hover= "";
-
+// false if db results end
 let can_add = true;
-
+var youtube_player;
+var youtube_video_done = false;
 var throttle_timer;
+
 const throttle = (callback, time) => {
   if (throttle_timer) return;
 
@@ -17,7 +17,18 @@ const throttle = (callback, time) => {
     throttle_timer = false;
   }, time);
 };
-
+function onYoutubeReady(event) { 
+	event.target.playVideo(); 
+}
+function onYoutubeStateChange(event) {
+	 if (event.data == YT.PlayerState.PLAYING && !youtube_video_done) {
+		setTimeout(stopYoutubeVideo, 6000); 
+		youtube_video_done = true; 
+	}
+}
+function stopYoutubeVideo() { 
+	youtube_player.stopVideo(); 
+}
 
 const createCard = (data) => {
 	// hidden prototype dom
@@ -87,35 +98,53 @@ const handleInfiniteScroll = () => {
   }, 500);
 };
 
-window.onload = function () {
-	var detailModal = document.getElementById('detailModal')
+function modalSetup(){
+	var detailModal = document.getElementById('detailModal');
+	
 	detailModal.addEventListener('hide.bs.modal', function (event) {
-		console.log("ok hiding");
 		window.history.pushState({urlPath:"/"},"Mitosis.pictures","/");
 		document.title = "Mitosis.pictures";
-	})
-	detailModal.addEventListener('show.bs.modal', function (event) {
-	var data_obj = event.relatedTarget
-
-	axios.get('/detail', {params:{id:data_obj.getAttribute('data-bs-id')}}).then(function (response) {
-		// detailModal.querySelector('.modal-title').textContent = response.data.title;
-		// detailModal.querySelector('.modal-body input').textContent = response.data.description;
-		detailModal.querySelector('.card-img-top').setAttribute('src',response.data.path);
-		detailModal.querySelector(".card-img-top").setAttribute("alt",response.data.filename);
 	
-		// detailModal.querySelector(".image-title").innerHTML = response.data.title;
-		detailModal.querySelector(".modal-title").innerHTML = response.data.title;
-		detailModal.querySelector(".image-title-link").setAttribute("href",`/image/${response.data._id}`);
-		
+		if(youtube_player != null){
+			stopVideo();
+		}
+	
+		detailModal.querySelector(".modal-title").innerHTML = "";
+		detailModal.querySelector(".image-title-link").setAttribute("href","");
+		detailModal.querySelector(".image-description").innerHTML = "";
+		detailModal.querySelector('.card-img-top').setAttribute('src',"");
+		detailModal.querySelector(".card-img-top").setAttribute("alt","");
+		detailModal.querySelector(".image-copyright").setAttribute("href","");
+		detailModal.querySelector(".image-copyright").innerHTML = "";
+		detailModal.querySelector(".video-container").innerHTML = "";
+	})
 
-		detailModal.querySelector(".image-description").innerHTML = response.data.description;
-		
-		detailModal.querySelector(".image-copyright").setAttribute("href",response.data.copyright_link);
-		detailModal.querySelector(".image-copyright").innerHTML = response.data.copyright_name;
+	detailModal.addEventListener('show.bs.modal', function (event) {
 
-		// update url
-		window.history.pushState({urlPath:`image/${response.data._id}`},response.data.title,`image/${response.data._id}`);
-		document.title = response.data.title;
+		var data_obj = event.relatedTarget
+
+		axios.get('/detail', {params:{id:data_obj.getAttribute('data-bs-id')}}).then(function (response) {
+			detailModal.querySelector(".modal-title").innerHTML = response.data.title;
+			detailModal.querySelector(".image-title-link").setAttribute("href",`/image/${response.data._id}`);
+			detailModal.querySelector(".image-description").innerHTML = response.data.description;
+			detailModal.querySelector(".image-copyright").setAttribute("href",response.data.copyright_link);
+			detailModal.querySelector(".image-copyright").innerHTML = response.data.copyright_name;
+			
+			if(typeof response.data.video_id === 'string' && response.data.video_id.length !== 0){
+				if(response.data.video_type === 1){
+					detailModal.querySelector(".video-container").innerHTML = `<div id="player"class="card-img-top border-25 soft-shadow"></div>`
+					player = new YT.Player('player', { height: '360',  width: '640', videoId: response.data.video_id, events: {'onReady': onYoutubeReady,'onStateChange': onYoutubeStateChange }}); 
+				}
+				if(response.data.video_type === 2){
+					detailModal.querySelector(".video-container").innerHTML = `<iframe src="https://player.vimeo.com/video/${ response.data.video_id}?h=87f80eda9b&color=000000&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen class="card-img-top border-25 soft-shadow" style="background: #000000;"></iframe>`
+				}
+			}else{
+				detailModal.querySelector('.card-img-top').setAttribute('src',response.data.path);
+				detailModal.querySelector(".card-img-top").setAttribute("alt",response.data.filename);
+			}
+			// update url
+			window.history.pushState({urlPath:`image/${response.data._id}`},response.data.title,`image/${response.data._id}`);
+			document.title = response.data.title;
 
 	}).catch(function (error) {
 		console.log(error);
@@ -124,7 +153,31 @@ window.onload = function () {
 	});  
 	})
 
-  addCards();
+}
+
+function youtubeSetup(){
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+	
+function syncState(){
+	const urlParams = new URLSearchParams(window.location.search);
+	if(urlParams.has('search')){
+		document.getElementById("search-input").value = urlParams.get('search');
+	}
+}
+
+window.onload = function () {
+	// first page
+	addCards();
+
+	modalSetup();
+
+	youtubeSetup();
+
+	syncState();
 };
 
 window.addEventListener("scroll", handleInfiniteScroll);
