@@ -86,6 +86,13 @@ router.get('/edit/:id', async (req, res) => {
     res.render('edit', { image, find });
 });
 
+router.get('/edit/:id/:find', async (req, res) => {
+    const { id } = req.params;
+    const find = req.params.find;
+    const image = await Image.findById(id);
+    res.render('edit', { image, find });
+});
+
 router.post('/edit', async (req, res) => {
     const image = await Image.findById(req.body.id);
     image.title = req.body.title;
