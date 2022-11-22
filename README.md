@@ -7,7 +7,7 @@ Someone's new treatment could be just 2 ideas away from being the next big cure.
 For cancer patients and their loved ones, we want to bring you the absolute best facts about cancer. We will deliver that information to you quickly, free of charge and you can trust it 100%.
 
 The site does not yet have a domain and cannot be navigated.
-In this initial stage it is uploaded to the AWS instance --> http://ec2-18-231-18-108.sa-east-1.compute.amazonaws.com/ but it is not available 100% of the time.
+In this initial stage it is uploaded to the AWS instance --> http://ec2-54-232-169-151.sa-east-1.compute.amazonaws.com/ but it is not available 100% of the time.
 
 <b>To upload a case</b>
 
