@@ -1,0 +1,20 @@
+on: push
+name: deploy
+jobs:
+  deploy:
+  name: deploy to cluster
+  runs-on: ubuntu-latest
+  steps:
+    name: push to docker
+    uses: actions/checkout@main
+    name: Build docker-compose
+    uses: docker-compose Build
+    name: UP docker-compose
+    uses: docker-compose up
+    with:
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
+      repository: ${{ github.repository }}
+      tag_with_ref: true
+      tag_with_sha: true
+      tags: ${{ github.sha }}
