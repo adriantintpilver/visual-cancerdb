@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: run npm i
+      run: npm i express ejs fs-extra mongoose morgan multer timeago.js uuid
     - name: Build docker-compose
       run: docker-compose build
     - name: UP docker-compose
