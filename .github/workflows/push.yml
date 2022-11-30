@@ -9,8 +9,6 @@ jobs:
       uses: actions/checkout@main
     - name: Build docker-compose
       uses: docker-compose build
-    - name: UP docker-compose
-      uses: docker-compose up
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
