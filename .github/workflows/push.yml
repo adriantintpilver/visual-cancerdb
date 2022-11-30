@@ -8,7 +8,7 @@ jobs:
     name: push to docker
     uses: actions/checkout@main
     name: Build docker-compose
-    uses: docker-compose Build
+    uses: docker-compose build
     name: UP docker-compose
     uses: docker-compose up
     with:
