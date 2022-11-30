@@ -5,9 +5,10 @@ jobs:
     name: deploy to cluster
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
+    - name: checkout
+      uses: actions/checkout@main
     - name: Build docker-compose
-    - uses: docker-compose build
+      uses: docker-compose build
     - name: UP docker-compose
       uses: docker-compose up
       with:
