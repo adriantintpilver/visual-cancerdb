@@ -5,7 +5,6 @@ jobs:
     name: deploy to cluster
     runs-on: ubuntu-latest
     steps:
-      name: push to docker
       uses: actions/checkout@main
       name: Build docker-compose
       uses: docker-compose build
