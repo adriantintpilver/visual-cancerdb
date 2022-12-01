@@ -20,9 +20,8 @@ jobs:
     - run: docker-compose build
     - run: docker-compose up
     - run: docker ps
-      name: Sleep
     - uses: jakejarvis/wait-action@master
       with:
-      time: '60s'
+        time: '60s'
     - run: docker ps
                                   
