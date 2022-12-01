@@ -1,0 +1,29 @@
+name: BuildRun
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+steps:
+                   
+  uses: actions/checkout@v1
+
+  name: Run test suite
+  run: docker-compose build
+  
+  name: Build the docker-compose stack
+  run: docker-compose up -d
+
+  name: Check running containers
+  run: docker ps
+                                  
