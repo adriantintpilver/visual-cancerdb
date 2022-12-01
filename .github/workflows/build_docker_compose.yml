@@ -13,11 +13,11 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-
+        
     steps:
                       
-      uses: actions/checkout@v1
-      run: docker-compose build
-      run: docker-compose up -d
-      run: docker ps
+    - uses: actions/checkout@v1
+    - run: docker-compose build
+    - run: docker-compose up -d
+    - run: docker ps
                                   
