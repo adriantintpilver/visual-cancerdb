@@ -1,15 +1,30 @@
-FROM node:14
+name: BuildRun
 
-RUN mkdir -p /usr/src/app
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-WORKDIR /usr/src/app
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-COPY package*.json ./
+    strategy:
+      matrix:
+        node-version: [14.x]
 
-RUN npm install
+    steps:
 
-COPY . .
-
-EXPOSE 3000
-
-CMD [ "npm", "run", "dev"]
+    - uses: actions/checkout@v1
+    - run: docker-compose build
+    - run: docker-compose up
+    - run: docker ps -a
+    - uses: jakejarvis/wait-action@master
+      with:
+        time: '300s'
+    - run: docker ps -a
+    - uses: jakejarvis/wait-action@master
+      with:
+        time: '300s'
+    - run: docker ps -a 
