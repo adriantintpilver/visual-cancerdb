@@ -1,3 +1,5 @@
 node_modules
 docker.txt
 dara
+Gemfile.lock
+_site
