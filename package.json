@@ -150,6 +150,9 @@
     "webidl-conversions": "^7.0.0",
     "whatwg-url": "^11.0.0",
     "xtend": "^4.0.2"
+  },  
+    "publishConfig": {
+    "@adriantintpilver:registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
