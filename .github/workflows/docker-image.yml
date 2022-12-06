@@ -18,3 +18,5 @@ jobs:
       run: docker-compose build
     - name: docker compose UP
       run: docker-compose up
+    - name: docker ps
+      run: docker ps
