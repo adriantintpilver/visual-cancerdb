@@ -31,6 +31,8 @@ jobs:
         uses: actions/configure-pages@v2
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
+      - name: Docker Compose
+      - run: docker-compose build
         with:
           source: ./
           destination: ./_site
@@ -49,7 +51,6 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
       - uses: actions/checkout@v1
-      - run: docker-compose build
       - run: docker ps
       - name: docker compose UP -d
         run: docker-compose up -d
