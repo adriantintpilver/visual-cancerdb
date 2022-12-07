@@ -2,16 +2,17 @@ version: "3"
 
 services:
   web:
-    container_name: NodeMongoApp
+    container_name: docker.pkg.github.com/adriantintpilver/visual-cancerdb/visual-cancerdb-nodejs
+    restart: always
     build: .
     ports:
-      - "80:3000"    
+      - "3000:3000"    
     links:
       - mongo
     volumes:
       - .:/usr/src/app
   mongo:
-    container_name: mymongodatabase
+    container_name: docker.pkg.github.com/adriantintpilver/visual-cancerdb/visual-cancerdb-mongo
     image: mongo
     ports: 
       - "27017:27017"
