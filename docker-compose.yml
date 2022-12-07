@@ -3,7 +3,6 @@ version: "3"
 services:
   web:
     container_name: NodeMongoApp
-    restart: always
     build: .
     ports:
       - "80:3000"    
