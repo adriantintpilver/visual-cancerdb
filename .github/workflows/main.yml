@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker-compose build
+    - name: docker compose UP
+      run: docker-compose up
+    - name: Sleep for 30 seconds
+      run: sleep 120s
+    - name: docker ps
+      run: docker ps
+    - name: Sleep for 30 seconds
+      run: sleep 120s
+    - name: docker ps
+      run: docker ps
+    - name: Sleep for 30 seconds
+      run: sleep 120s
+    - name: docker ps
+      run: docker ps
